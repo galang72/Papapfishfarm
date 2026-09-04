@@ -124,7 +124,7 @@ export default function SettingsPage() {
             <input
               type="email"
               disabled
-              value={user?.email || 'admin@lelefarm.id'}
+              value={user?.email || 'admin@Papapfishfarm.id'}
               className="w-full px-3.5 py-2 text-sm bg-slate-100 border border-slate-200 rounded-xl text-slate-500 cursor-not-allowed"
             />
           </div>

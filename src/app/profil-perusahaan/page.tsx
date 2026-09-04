@@ -599,7 +599,7 @@ const handleSubmit = (e: React.FormEvent) => {
                   <div>
                     <p className="font-bold text-white">Lokasi Peternakan:</p>
                     <p className="text-slate-400 text-xs">
-                      Sentra Budidaya Ikan Air Tawar Papap Fish Farm, Indonesia
+                      Kp. Babakan Tanjung, Tanjungwangi, Kec. Pacet, Kabupaten Bandung, Jawa Barat 40385
                     </p>
                   </div>
                 </div>

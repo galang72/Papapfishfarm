@@ -15,7 +15,7 @@ async function main() {
   console.log('Membuat data User...');
   const user = await prisma.user.create({
     data: {
-      email: 'admin@lelefarm.id',
+      email: 'admin@Papapfishfarm.id',
       password: 'password123',
       name: 'Haji Anung Suryanto',
       farmName: 'Papap Fish Farm',
