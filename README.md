@@ -105,4 +105,4 @@ Aplikasi Web Responsif Modern Sistem Manajemen & Pencatatan Budidaya Ikan Lele, 
 - **Email**: `admin@lelefarm.id`
 - **Kata Sandi**: `password123`
 - **Nama Pengelola**: Haji Anung Suryanto
-- **Nama Usaha**: Papap fish farm
+- **Nama Usaha**: Papapfishfarm
