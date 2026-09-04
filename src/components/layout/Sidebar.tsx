@@ -19,6 +19,7 @@ import {
   ArrowUpRight,
   X,
   Globe,
+  LogOut,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 
@@ -310,9 +311,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         {/* Footer / Farm Profile */}
-        <div className="p-4 border-t border-slate-800 bg-slate-950/30">
-          <Link href="/pengaturan" onClick={onClose} className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-emerald-400 group-hover:border-emerald-500 transition-colors">
+        <div className="p-4 border-t border-slate-800 bg-slate-950/30 flex items-center justify-between gap-2">
+          <Link href="/pengaturan" onClick={onClose} className="flex items-center gap-3 group flex-1 min-w-0">
+            <div className="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-emerald-400 group-hover:border-emerald-500 transition-colors flex-shrink-0">
               {getInitials()}
             </div>
             <div className="flex-1 min-w-0">
@@ -324,6 +325,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </p>
             </div>
           </Link>
+          <button
+            onClick={async () => {
+              await fetch('/api/auth/logout', { method: 'POST' });
+              window.location.href = '/login';
+            }}
+            title="Keluar / Logout"
+            className="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
         </div>
       </aside>
     </>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Bell, User, PlusCircle } from 'lucide-react';
+import { Menu, Bell, User, PlusCircle, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useUser } from '@/context/UserContext';
 
@@ -111,18 +111,30 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
           )}
         </div>
 
-        {/* Profile Avatar */}
-        <Link
-          href="/pengaturan"
-          className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-slate-100 transition-colors"
-        >
-          <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
-            {getInitials()}
-          </div>
-          <span className="text-xs font-semibold text-slate-700 hidden lg:inline">
-            {user?.name || 'Haji Anung Suryanto'}
-          </span>
-        </Link>
+        {/* Profile Avatar & Logout */}
+        <div className="flex items-center gap-1.5">
+          <Link
+            href="/pengaturan"
+            className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-slate-100 transition-colors"
+          >
+            <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+              {getInitials()}
+            </div>
+            <span className="text-xs font-semibold text-slate-700 hidden lg:inline">
+              {user?.name || 'Haji Anung Suryanto'}
+            </span>
+          </Link>
+          <button
+            onClick={async () => {
+              await fetch('/api/auth/logout', { method: 'POST' });
+              window.location.href = '/login';
+            }}
+            title="Keluar / Logout"
+            className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors cursor-pointer"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </header>
   );
