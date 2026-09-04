@@ -15,12 +15,8 @@ export async function getCurrentUser() {
     if (user) return user;
   }
 
-  // Fallback ke user pertama (admin) jika belum ada session agar langsung bisa dipakai
-  const defaultUser = await prisma.user.findFirst({
-    select: { id: true, email: true, name: true, farmName: true },
-  });
-
-  return defaultUser;
+  // Wajib login: kembalikan null jika belum memiliki sesi aktif
+  return null;
 }
 
 export function getUserSessionCookieName() {
