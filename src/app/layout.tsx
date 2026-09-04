@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Papap Fish Farm - Sistem Budidaya & Keuangan Ikan Air Tawar',
   description: 'Aplikasi manajemen dan pencatatan budidaya ikan air tawar, keuangan, panen, kematian ikan, analisis FCR, ROI, dan laba rugi.',
   verification: {
-    google: "jIOLsGAQhPF3VG-jdPzGdrWwgYTSv9cOyN9xG2vodu0",
+    google: "jIOLsGAQhPF3VG-jdPzGdrWwgYTSv9cOyN9xG2vodu0"
   },
 };
 
