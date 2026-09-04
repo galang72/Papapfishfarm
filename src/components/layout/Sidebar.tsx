@@ -67,9 +67,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
             <div>
               <h1 className="font-bold text-base text-white tracking-tight leading-none flex items-center gap-1.5">
-                LeleFarm <span className="text-teal-400 text-xs font-semibold px-1.5 py-0.5 rounded bg-teal-950 border border-teal-800/50">PRO</span>
+                Papap Fish <span className="text-teal-400 text-xs font-semibold px-1.5 py-0.5 rounded bg-teal-950 border border-teal-800/50">FARM</span>
               </h1>
-              <p className="text-[11px] text-slate-400 mt-1 truncate">Manajemen Budidaya Lele</p>
+              <p className="text-[11px] text-slate-400 mt-1 truncate">Budidaya Ikan Air Tawar</p>
             </div>
           </Link>
           <button
@@ -317,10 +317,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-medium text-white truncate group-hover:text-emerald-300 transition-colors">
-                {user?.name || 'Pengelola Farm'}
+                {user?.name || 'Haji Anung Suryanto'}
               </p>
               <p className="text-[11px] text-slate-400 truncate">
-                {user?.farmName || 'LeleFarm Sukses Makmur'}
+                {user?.farmName || 'Papap Fish Farm'}
               </p>
             </div>
           </Link>

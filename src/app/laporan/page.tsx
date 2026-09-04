@@ -15,8 +15,10 @@ import {
 } from 'lucide-react';
 import { formatRupiah, formatNumber, formatKg, formatDate, formatDateInput } from '@/lib/formatters';
 import { exportToExcel } from '@/lib/exportExcel';
+import { useUser } from '@/context/UserContext';
 
 export default function ReportsPage() {
+  const { user } = useUser();
   const [reportType, setReportType] = useState<'keuangan' | 'budidaya' | 'panen'>('keuangan');
   const [data, setData] = useState<any>(null);
   const [cycles, setCycles] = useState<any[]>([]);
@@ -230,10 +232,10 @@ export default function ReportsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-black uppercase tracking-wider text-slate-900">
-              LeleFarm Sukses Makmur
+              {user?.farmName || 'Papap Fish Farm'}
             </h1>
             <p className="text-xs text-slate-600">
-              Sistem Manajemen Usaha Budidaya Ikan Lele Modern &bull; Telepon: (021) 8899-2345
+              Sistem Manajemen Usaha Budidaya Ikan Air Tawar Modern &bull; Telepon: +62 812-3456-7890
             </p>
             <p className="text-xs text-slate-600">
               Dokumen: {reportType === 'keuangan' ? 'Laporan Keuangan & Kas' : reportType === 'budidaya' ? 'Laporan Populasi Budidaya' : 'Laporan Hasil Panen Raya'}
@@ -241,7 +243,7 @@ export default function ReportsPage() {
           </div>
           <div className="text-right text-xs text-slate-600">
             <p>Tanggal Cetak: {formatDate(new Date())}</p>
-            <p>Pengelola: Haji Supardi</p>
+            <p>Pengelola: {user?.name || 'Haji Anung Suryanto'}</p>
           </div>
         </div>
       </div>
@@ -494,8 +496,8 @@ export default function ReportsPage() {
             </div>
             <div>
               <p>Dicetak pada: {formatDate(new Date())}</p>
-              <p className="font-bold mt-16">Haji Supardi</p>
-              <p className="text-slate-500">Pemilik Usaha LeleFarm</p>
+              <p className="font-bold mt-16">{user?.name || 'Haji Anung Suryanto'}</p>
+              <p className="text-slate-500">Pemilik Usaha {user?.farmName || 'Papap Fish Farm'}</p>
             </div>
           </div>
         </div>

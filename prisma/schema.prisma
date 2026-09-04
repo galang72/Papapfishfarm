@@ -12,7 +12,7 @@ model User {
   email        String             @unique
   password     String
   name         String
-  farmName     String             @default("LeleFarm Sukses Makmur")
+  farmName     String             @default("Papap Fish Farm")
   createdAt    DateTime           @default(now())
   updatedAt    DateTime           @updatedAt
   ponds        Pond[]

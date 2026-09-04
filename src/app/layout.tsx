@@ -3,8 +3,8 @@ import './globals.css';
 import AppLayout from '@/components/layout/AppLayout';
 
 export const metadata: Metadata = {
-  title: 'LeleFarm Management - Sistem Budidaya & Keuangan Lele',
-  description: 'Aplikasi manajemen dan pencatatan budidaya ikan lele, keuangan, panen, kematian ikan, analisis FCR, ROI, dan laba rugi.',
+  title: 'Papap Fish Farm - Sistem Budidaya & Keuangan Ikan Air Tawar',
+  description: 'Aplikasi manajemen dan pencatatan budidaya ikan air tawar, keuangan, panen, kematian ikan, analisis FCR, ROI, dan laba rugi.',
 };
 
 export default function RootLayout({

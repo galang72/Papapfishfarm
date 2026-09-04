@@ -56,9 +56,9 @@ export default function LoginPage() {
               <Fish className="w-8 h-8" />
             </div>
           </Link>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">LeleFarm Management</h1>
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight">Papap Fish Farm</h1>
           <p className="text-xs text-slate-500">
-            Sistem Manajemen & Pencatatan Usaha Budidaya Ikan Lele
+            Sistem Manajemen & Pencatatan Usaha Budidaya Ikan Air Tawar
           </p>
         </div>
 

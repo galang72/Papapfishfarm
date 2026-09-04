@@ -47,7 +47,7 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
 
         <div>
           <h2 className="text-sm sm:text-base font-bold text-slate-800 tracking-tight">
-            {user?.farmName || 'LeleFarm Management'}
+            {user?.farmName || 'Papap Fish Farm'}
           </h2>
           <p className="text-[11px] text-slate-500 hidden sm:block">{currentDate}</p>
         </div>
@@ -120,7 +120,7 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
             {getInitials()}
           </div>
           <span className="text-xs font-semibold text-slate-700 hidden lg:inline">
-            {user?.name || 'Pengelola Farm'}
+            {user?.name || 'Haji Anung Suryanto'}
           </span>
         </Link>
       </div>

@@ -17,8 +17,8 @@ async function main() {
     data: {
       email: 'admin@lelefarm.id',
       password: 'password123',
-      name: 'Haji Supardi',
-      farmName: 'LeleFarm Sukses Makmur',
+      name: 'Haji Anung Suryanto',
+      farmName: 'Papap Fish Farm',
     },
   });
 

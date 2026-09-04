@@ -99,7 +99,7 @@ export default function DashboardPage() {
             Ringkasan Budidaya & Keuangan
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-            Pantau performa kolam, pertumbuhan lele, kas usaha, dan margin keuntungan secara real-time.
+            Pantau performa kolam, pertumbuhan ikan air tawar, kas usaha, dan margin keuntungan secara real-time.
           </p>
         </div>
 
