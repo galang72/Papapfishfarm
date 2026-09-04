@@ -41,20 +41,22 @@ export default function CompanyProfilePage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setContactForm({
-        name: '',
-        phone: '',
-        interest: 'Ikan Konsumsi Segar (Lele / Nila)',
-        message: '',
-      });
-      alert('Terima kasih! Tim Papap Fish Farm akan segera menghubungi Anda via WhatsApp.');
-    }, 1500);
-  };
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  setSubmitted(true);
+
+  // Format pesan WhatsApp
+  const text = `Halo Papap Fish Farm,%0A%0ASaya ingin memesan/berkonsultasi dengan detail berikut:%0A- *Nama/Usaha*: ${encodeURIComponent(contactForm.name)}%0A- *No. Telepon*: ${encodeURIComponent(contactForm.phone)}%0A- *Komoditas*: ${encodeURIComponent(contactForm.interest)}%0A- *Keterangan*: ${encodeURIComponent(contactForm.message)}`;
+
+  // Nomor WhatsApp tujuan (Haji Anung Suryanto)
+  const whatsappUrl = `https://wa.me/6282219456643?text=${text}`;
+
+  // Buka WhatsApp di tab/aplikasi baru
+  setTimeout(() => {
+    window.open(whatsappUrl, '_blank');
+    setSubmitted(false);
+  }, 600);
+};
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-black">
@@ -608,7 +610,7 @@ export default function CompanyProfilePage() {
                   </div>
                   <div>
                     <p className="font-bold text-white">Telepon & WhatsApp:</p>
-                    <p className="text-slate-400 text-xs">+62 812-3456-7890 / Haji Anung Suryanto</p>
+                    <p className="text-slate-400 text-xs">+62 822-1945-6643 / Haji Anung Suryanto</p>
                   </div>
                 </div>
 
@@ -618,7 +620,7 @@ export default function CompanyProfilePage() {
                   </div>
                   <div>
                     <p className="font-bold text-white">Email Resmi:</p>
-                    <p className="text-slate-400 text-xs">kontak@papapfishfarm.com</p>
+                    <p className="text-slate-400 text-xs">papapfishfarm@gmail.com</p>
                   </div>
                 </div>
 

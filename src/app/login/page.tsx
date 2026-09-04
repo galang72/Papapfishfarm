@@ -106,7 +106,7 @@ export default function LoginPage() {
             href="/profil-perusahaan"
             className="text-xs text-slate-500 hover:text-emerald-600 transition-colors"
           >
-            &larr; Lihat Profil Perusahaan (Landing Page)
+            &larr; Lihat Profil Perusahaan 
           </Link>
         </div>
       </div>
