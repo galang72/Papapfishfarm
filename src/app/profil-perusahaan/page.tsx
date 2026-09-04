@@ -22,10 +22,17 @@ import {
   Menu,
   X,
   Wheat,
+  Activity,
+  Maximize2,
+  Layers,
+  Compass,
 } from 'lucide-react';
+import BioflocTank3D from '@/components/3d/BioflocTank3D';
+import Card3D from '@/components/3d/Card3D';
 
 export default function CompanyProfilePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab3D, setActiveTab3D] = useState<'tank' | 'stats'>('tank');
   const [contactForm, setContactForm] = useState({
     name: '',
     phone: '',
@@ -45,44 +52,53 @@ export default function CompanyProfilePage() {
         interest: 'Ikan Konsumsi Segar (Lele / Nila)',
         message: '',
       });
-      alert('Terima kasih! Tim Papap Fish Farm akan segera menghubungi Anda.');
+      alert('Terima kasih! Tim Papap Fish Farm akan segera menghubungi Anda via WhatsApp.');
     }, 1500);
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-emerald-500 selection:text-white">
-      {/* 1. PUBLIC NAVBAR */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/profil-perusahaan" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-transform">
-              <Fish className="w-6 h-6" />
+    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-black">
+      {/* 1. PUBLIC 3D NAVBAR */}
+      <header className="sticky top-0 z-50 bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-22 flex items-center justify-between">
+          <Link href="/profil-perusahaan" className="flex items-center gap-3.5 group">
+            <div className="w-14 h-14 rounded-2xl bg-white p-1.5 flex items-center justify-center shadow-lg shadow-cyan-950/60 border border-cyan-500/30 group-hover:scale-105 transition-transform">
+              <img
+                src="/logo.png"
+                alt="Papap Fish Farm Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
-              <span className="text-xl font-black tracking-tight text-slate-900 block leading-tight">
-                Papap Fish <span className="text-emerald-600 font-extrabold text-sm uppercase">Farm</span>
+              <span className="text-xl font-black tracking-tight text-white block leading-tight">
+                Papap Fish <span className="text-cyan-400 font-extrabold text-sm uppercase tracking-wider">Farm</span>
               </span>
-              <span className="text-[11px] text-slate-500 font-medium tracking-wide uppercase">
-                Budidaya Ikan Air Tawar Modern
+              <span className="text-[11px] text-slate-400 font-semibold tracking-wide uppercase flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                Budidaya Ikan Air Tawar 3D
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <a href="#beranda" className="hover:text-emerald-600 transition-colors">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+            <a href="#beranda" className="hover:text-cyan-400 transition-colors">
               Beranda
             </a>
-            <a href="#tentang" className="hover:text-emerald-600 transition-colors">
+            <a href="#simulasi3d" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-cyan-300">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Simulasi 3D</span>
+            </a>
+            <a href="#tentang" className="hover:text-cyan-400 transition-colors">
               Tentang Kami
             </a>
-            <a href="#produk" className="hover:text-emerald-600 transition-colors">
+            <a href="#produk" className="hover:text-cyan-400 transition-colors">
               Produk Ikan
             </a>
-            <a href="#keunggulan" className="hover:text-emerald-600 transition-colors">
-              Teknologi Kolam
+            <a href="#fasilitas" className="hover:text-cyan-400 transition-colors">
+              Fasilitas Kolam
             </a>
-            <a href="#kontak" className="hover:text-emerald-600 transition-colors">
+            <a href="#kontak" className="hover:text-cyan-400 transition-colors">
               Kontak
             </a>
           </nav>
@@ -91,17 +107,17 @@ export default function CompanyProfilePage() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-slate-950 text-xs font-black rounded-xl shadow-lg shadow-cyan-900/40 transition-all transform hover:-translate-y-0.5"
             >
-              <span>Dashboard Manajemen</span>
-              <ArrowRight className="w-4 h-4 text-emerald-400" />
+              <span>Dashboard Budidaya</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-600 hover:text-slate-900"
+            className="md:hidden p-2 text-slate-300 hover:text-white"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -109,46 +125,53 @@ export default function CompanyProfilePage() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+          <div className="md:hidden bg-slate-900 border-b border-slate-800 px-6 py-5 space-y-3 shadow-2xl">
             <a
               href="#beranda"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold text-slate-700 py-1"
+              className="block text-sm font-semibold text-slate-200 py-1"
             >
               Beranda
             </a>
             <a
+              href="#simulasi3d"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-semibold text-cyan-400 py-1"
+            >
+              Simulasi Kolam 3D
+            </a>
+            <a
               href="#tentang"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold text-slate-700 py-1"
+              className="block text-sm font-semibold text-slate-200 py-1"
             >
               Tentang Kami
             </a>
             <a
               href="#produk"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold text-slate-700 py-1"
+              className="block text-sm font-semibold text-slate-200 py-1"
             >
               Produk Ikan
             </a>
             <a
-              href="#keunggulan"
+              href="#fasilitas"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold text-slate-700 py-1"
+              className="block text-sm font-semibold text-slate-200 py-1"
             >
-              Teknologi Kolam
+              Fasilitas Kolam
             </a>
             <a
               href="#kontak"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-sm font-semibold text-slate-700 py-1"
+              className="block text-sm font-semibold text-slate-200 py-1"
             >
               Kontak
             </a>
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center py-2.5 bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-sm"
+              className="block w-full text-center py-3 bg-cyan-500 text-slate-950 font-black text-xs rounded-xl shadow-lg mt-2"
             >
               Masuk ke Dashboard Manajemen
             </Link>
@@ -156,114 +179,100 @@ export default function CompanyProfilePage() {
         )}
       </header>
 
-      {/* 2. HERO SECTION */}
-      <section id="beranda" className="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-to-b from-emerald-50/50 via-teal-50/20 to-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 2. 3D HERO SECTION */}
+      <section id="beranda" className="relative pt-12 pb-24 lg:pt-16 lg:pb-32 overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-slate-950">
+        {/* Ambient Glows */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
-                <span>Pusat Budidaya Ikan Air Tawar Berkelanjutan</span>
+            {/* Left Content */}
+            <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-black uppercase tracking-wider shadow-lg shadow-cyan-950/50">
+                <Sparkles className="w-4 h-4 text-cyan-400" />
+                <span>Teknologi Budidaya Air Tawar Modern 3D</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-                Penyedia Ikan Air Tawar Segar & Bibit Unggul{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
-                  Higienis Tanpa Bau Lumpur
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
+                Kualitas Ikan Segar Pilihan{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400">
+                  Bersih Tanpa Bau Lumpur
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                <strong>Papap Fish Farm</strong> dipimpin oleh <strong>Haji Anung Suryanto</strong>, membudidayakan komoditas ikan air tawar pilihan (ikan lele, nila, gurame, dan patin) dengan teknologi bioflok dan sirkulasi air bersih. Menghasilkan ikan berdaging padat, gurih, dan siap memasok kebutuhan restoran, pasar, serta rumah tangga.
+              <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                Selamat datang di <strong>Papap Fish Farm</strong>, dipimpin oleh <strong>Haji Anung Suryanto</strong>. Kami membudidayakan aneka komoditas ikan air tawar pilihan (lele, nila, gurame, patin) menggunakan ekosistem kolam bioflok tersirkulasi dengan pengawasan digital 3D.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                <a
+                  href="#simulasi3d"
+                  className="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 text-sm font-black rounded-2xl shadow-xl shadow-cyan-500/25 transition-all text-center flex items-center justify-center gap-2.5 transform hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <Activity className="w-4 h-4" />
+                  <span>Jelajahi Kolam 3D Interaktif</span>
+                </a>
                 <a
                   href="#produk"
-                  className="w-full sm:w-auto px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-2xl shadow-lg shadow-emerald-700/20 transition-all text-center flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-7 py-3.5 bg-slate-900/90 border border-slate-700 hover:bg-slate-800 text-white text-sm font-bold rounded-2xl shadow-md transition-all text-center flex items-center justify-center gap-2"
                 >
-                  <span>Pesan Ikan & Kemitraan</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Lihat Katalog Produk</span>
+                  <ArrowRight className="w-4 h-4 text-cyan-400" />
                 </a>
-                <Link
-                  href="/"
-                  className="w-full sm:w-auto px-6 py-3.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-800 text-sm font-bold rounded-2xl shadow-sm transition-all text-center flex items-center justify-center gap-2"
-                >
-                  <Building2 className="w-4 h-4 text-slate-500" />
-                  <span>Sistem Manajemen Budidaya</span>
-                </Link>
               </div>
 
-              {/* Badges Keunggulan */}
-              <div className="grid grid-cols-3 gap-3 pt-6 border-t border-slate-200/80 max-w-lg mx-auto lg:mx-0">
-                <div className="text-left">
-                  <p className="font-extrabold text-slate-900 text-lg sm:text-2xl">100%</p>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">Bebas Bau Lumpur</p>
+              {/* 3D Glass Badge Metrics */}
+              <div className="grid grid-cols-3 gap-3 pt-6 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
+                  <p className="font-black text-cyan-400 text-xl sm:text-2xl">100%</p>
+                  <p className="text-[11px] text-slate-400 font-semibold mt-0.5">Bebas Bau Lumpur</p>
                 </div>
-                <div className="text-left">
-                  <p className="font-extrabold text-slate-900 text-lg sm:text-2xl">&ge; 95%</p>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">Tingkat Hidup (SR)</p>
+                <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
+                  <p className="font-black text-emerald-400 text-xl sm:text-2xl">&ge; 95%</p>
+                  <p className="text-[11px] text-slate-400 font-semibold mt-0.5">Survival Rate (SR)</p>
                 </div>
-                <div className="text-left">
-                  <p className="font-extrabold text-slate-900 text-lg sm:text-2xl">10+ Ton</p>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">Kapasitas Panen Farm</p>
+                <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
+                  <p className="font-black text-teal-300 text-xl sm:text-2xl">10+ Ton</p>
+                  <p className="text-[11px] text-slate-400 font-semibold mt-0.5">Panen / Siklus</p>
                 </div>
               </div>
             </div>
 
-            {/* Visual Hero Card */}
-            <div className="lg:col-span-5">
-              <div className="relative mx-auto max-w-md">
-                <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-3xl blur-xl opacity-30 animate-pulse" />
-                <div className="relative bg-white rounded-3xl p-6 shadow-2xl border border-slate-100 space-y-6">
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center">
-                        <Waves className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-slate-900 text-sm">Papap Fish Farm Monitor</h4>
-                        <p className="text-xs text-slate-400">Pengelola: H. Anung Suryanto</p>
-                      </div>
+            {/* Right 3D Emblem Showcase */}
+            <div className="lg:col-span-6 flex justify-center">
+              <div className="relative w-full max-w-md">
+                {/* 3D Glowing Rings behind Logo */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse" />
+                <div className="relative p-8 rounded-3xl bg-slate-900/80 border border-slate-800/90 shadow-2xl backdrop-blur-xl space-y-6 transform hover:scale-[1.02] transition-transform">
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full bg-cyan-400" />
+                      <span className="text-xs font-black uppercase tracking-wider text-slate-300">
+                        Official Emblem & Identity
+                      </span>
                     </div>
-                    <span className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold rounded-full">
-                      Farm Aktif
+                    <span className="px-3 py-1 bg-cyan-950 text-cyan-300 text-xs font-bold rounded-full border border-cyan-800/50">
+                      Terverifikasi SNI
                     </span>
                   </div>
 
-                  {/* Highlights */}
-                  <div className="space-y-3 text-xs">
-                    <div className="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
-                      <span className="text-slate-600 font-medium">Komoditas Utama:</span>
-                      <span className="font-bold text-slate-900">Lele, Nila Merah, Gurame, Patin</span>
-                    </div>
-                    <div className="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
-                      <span className="text-slate-600 font-medium">Teknologi Budidaya:</span>
-                      <span className="font-bold text-teal-600">Bioflok & Sirkulasi Aerasi Intensif</span>
-                    </div>
-                    <div className="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
-                      <span className="text-slate-600 font-medium">Standar Pakan:</span>
-                      <span className="font-bold text-emerald-700">Pelet SNI + Suplemen Probiotik Alami</span>
-                    </div>
-                    <div className="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
-                      <span className="text-slate-600 font-medium">Jaminan Kualitas:</span>
-                      <span className="font-bold text-slate-900">Higienis, Segar Hidup, Bersih</span>
+                  {/* Logo Center Display with 3D Depth Frame */}
+                  <div className="relative py-4 flex items-center justify-center">
+                    <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl bg-white p-3 shadow-2xl shadow-cyan-950 flex items-center justify-center border-4 border-cyan-500/30">
+                      <img
+                        src="/logo.png"
+                        alt="Papap Fish Farm Emblem"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-emerald-950 text-white flex items-center justify-between">
-                    <div>
-                      <p className="text-[11px] uppercase tracking-wider text-emerald-300 font-bold">
-                        Pemesanan Pasokan Rutin
-                      </p>
-                      <p className="text-sm font-bold mt-0.5">Partai Kecil & Kontrak Pasokan Besar</p>
-                    </div>
-                    <a
-                      href="#kontak"
-                      className="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl shadow-sm transition-all"
-                    >
-                      Hubungi Kami
-                    </a>
+                  {/* Farm Owner Info Box */}
+                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 text-center">
+                    <p className="text-xs text-slate-400">Pemilik & Pengelola Farm:</p>
+                    <p className="text-base font-black text-white">Haji Anung Suryanto</p>
+                    <p className="text-xs text-cyan-400 font-semibold">Sentra Budidaya Ikan Air Tawar Nusantara</p>
                   </div>
                 </div>
               </div>
@@ -272,358 +281,371 @@ export default function CompanyProfilePage() {
         </div>
       </section>
 
-      {/* 3. TENTANG KAMI */}
-      <section id="tentang" className="py-20 bg-white border-y border-slate-100">
+      {/* 3. SIMULASI KOLAM 3D TANK INTERAKTIF */}
+      <section id="simulasi3d" className="py-20 bg-slate-900/80 border-y border-slate-800 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="max-w-3xl mx-auto text-center space-y-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-cyan-400 bg-cyan-950/80 px-4 py-1.5 rounded-full border border-cyan-800">
+              <Compass className="w-3.5 h-3.5" />
+              <span>Teknologi WebGL 3D Tiga Dimensi</span>
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Simulasi Interaktif Kolam Bioflok 3D
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              Putar dan inspeksi secara 360 derajat visualisasi kolam terpal bulat bioflok Papap Fish Farm. Amati sirkulasi air tersirkulasi, pergerakan ikan air tawar, serta aerasi oksigen mikroba.
+            </p>
+          </div>
+
+          {/* 3D Canvas Visualizer */}
+          <div className="max-w-5xl mx-auto">
+            <BioflocTank3D />
+          </div>
+
+          {/* 3D Features Legend */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto pt-4">
+            <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <div className="w-9 h-9 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold">
+                <Waves className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-white text-sm">Sirkulasi Bioflok Aktif</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Bakteri heterotrof mengurai limbah amonia menjadi flok protein bernutrisi yang dimakan kembali oleh ikan secara alami.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <div className="w-9 h-9 rounded-xl bg-teal-950 text-teal-400 flex items-center justify-center font-bold">
+                <Activity className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-white text-sm">Aerasi High-Pressure 24 Jam</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Diffuser mikro menjaga pasokan Dissolved Oxygen (DO) selalu di atas 5.5 mg/L untuk pertumbuhan ikan yang prima.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <div className="w-9 h-9 rounded-xl bg-emerald-950 text-emerald-400 flex items-center justify-center font-bold">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-white text-sm">Central Drainase Anti Lumpur</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Konstruksi dasar kolam mengerucut ke lubang pembuangan tengah untuk menguras kotoran tanpa mengganggu biomassa ikan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. TENTANG KAMI */}
+      <section id="tentang" className="py-20 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="max-w-3xl mx-auto text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-              Profil Peternakan
+            <span className="text-xs font-black uppercase tracking-wider text-teal-400 bg-teal-950 px-3.5 py-1 rounded-full border border-teal-800">
+              Tentang Papap Fish Farm
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Dedikasi untuk Budidaya Ikan Air Tawar yang Sehat, Higienis, dan Profesional
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Dedikasi Budidaya Ikan Air Tawar Berkualitas Unggul
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              <strong>Papap Fish Farm</strong> didirikan oleh <strong>Haji Anung Suryanto</strong> dengan komitmen menghadirkan produk perikanan air tawar berkualitas unggul. Melalui penerapan teknologi budidaya modern, manajemen pakan presisi, dan pencatatan digital terpadu, kami menghasilkan pasokan ikan yang sehat, segar, dan ramah lingkungan.
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              Diprakarsai oleh <strong>Haji Anung Suryanto</strong>, Papap Fish Farm berkomitmen menghadirkan pasokan ikan air tawar yang sehat, higienis, dan terpercaya bagi masyarakat luas, pengusaha kuliner, dan industri katering.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+            <Card3D className="bg-slate-900/90 border border-slate-800 p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-black">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 text-base">Higienis & Tanpa Bau Lumpur</h4>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Kolam terpal dan bioflok bundar dengan drainase sentral (central drain) memastikan endapan terbuang rutin, menghasilkan daging ikan bersih bebas bau tanah.
+              <h4 className="font-black text-white text-base">Higienis Tanpa Lumpur</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Ikan tidak bersentuhan dengan lumpur dasar tanah. Menghasilkan cita rasa daging manis alami, bersih, dan segar.
               </p>
-            </div>
+            </Card3D>
 
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
+            <Card3D className="bg-slate-900/90 border border-slate-800 p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal-950 text-teal-400 flex items-center justify-center font-black">
                 <Wheat className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 text-base">Pakan Terkontrol SNI</h4>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Hanya menggunakan pakan pelet apung bersertifikasi dengan nutrisi berimbang serta suplementasi probiotik alami untuk kesehatan pencernaan ikan.
+              <h4 className="font-black text-white text-base">Pakan Terkontrol SNI</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Bebas dari pakan limbah. Seluruh ikan mengonsumsi pelet bersertifikasi dengan suplemen probiotik alami.
               </p>
-            </div>
+            </Card3D>
 
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+            <Card3D className="bg-slate-900/90 border border-slate-800 p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-950 text-emerald-400 flex items-center justify-center font-black">
                 <Scale className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 text-base">Sortir Ketat & Seragam</h4>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Penyortiran ukuran dilakukan secara berkala demi menjaga keseragaman bobot dan ukuran saat panen sesuai spesifikasi mitra restoran dan pasar.
+              <h4 className="font-black text-white text-base">Sortir Ketat & Seragam</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Grading bobot dilakukan rutin sehingga ukuran ikan saat panen seragam sesuai kebutuhan restoran dan pasar.
               </p>
-            </div>
+            </Card3D>
 
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 space-y-3 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+            <Card3D className="bg-slate-900/90 border border-slate-800 p-6 space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-amber-950 text-amber-400 flex items-center justify-center font-black">
                 <Users className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 text-base">Kemitraan Pasokan Stabil</h4>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Menjadi rekan pasokan terpercaya bagi pelaku usaha kuliner, rumah makan, pasar induk, katering, serta distributor ikan air tawar.
+              <h4 className="font-black text-white text-base">Kemitraan Pasokan Stabil</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Menjamin ketersediaan pasokan mingguan dan bulanan dengan kontrak kerja sama transparan dan harga bersaing.
               </p>
-            </div>
+            </Card3D>
           </div>
         </div>
       </section>
 
-      {/* 4. PRODUK & LAYANAN KAMI */}
-      <section id="produk" className="py-20 bg-slate-50">
+      {/* 5. KATALOG PRODUK IKAN DENGAN 3D TILT CARDS */}
+      <section id="produk" className="py-20 bg-slate-900/90 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="max-w-2xl mx-auto text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100">
-              Katalog Produk Kami
+            <span className="text-xs font-black uppercase tracking-wider text-cyan-400 bg-cyan-950 px-4 py-1.5 rounded-full border border-cyan-800">
+              Katalog Komoditas
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Komoditas Ikan Air Tawar Papap Fish Farm
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Produk Ikan Air Tawar Unggulan
             </h2>
-            <p className="text-slate-600 text-sm">
-              Tersedia dalam kondisi segar hidup langsung panen maupun benih siap tebar.
+            <p className="text-slate-400 text-sm">
+              Tersedia dalam kondisi segar hidup langsung panen dari kolam budidaya terawat.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Produk 1 */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-6">
+            <Card3D className="bg-slate-950 border border-slate-800 p-7 flex flex-col justify-between space-y-6" glowColor="rgba(6, 182, 212, 0.3)">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-2xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold border border-cyan-800">
                   <Fish className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Ikan Lele Konsumsi Segar</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Lele hasil budidaya bioflok bersih. Daging kesat padat, tidak berlemak berlebih, tidak bau tanah, dan disukai pelanggan kuliner.
+                <h3 className="text-xl font-black text-white">Ikan Lele Konsumsi Segar</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Lele hasil budidaya bioflok modern. Daging kesat padat, rendah lemak, tidak berbau lumpur, dan sangat renyah saat digoreng.
                 </p>
-                <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                <div className="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4">
                   <div className="flex justify-between">
-                    <span>Ukuran Standar:</span>
-                    <span className="font-bold text-slate-900">Isi 6 - 8 ekor / kg</span>
+                    <span className="text-slate-400">Ukuran Standar:</span>
+                    <span className="font-bold text-white">Isi 6 - 8 ekor / kg</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Ukuran Warung Pecel:</span>
-                    <span className="font-bold text-slate-900">Isi 8 - 10 ekor / kg</span>
+                    <span className="text-slate-400">Ukuran Warung Pecel:</span>
+                    <span className="font-bold text-white">Isi 8 - 10 ekor / kg</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Kondisi Kirim:</span>
-                    <span className="font-bold text-emerald-600">Segar Hidup / Bersih</span>
+                    <span className="text-slate-400">Kondisi Pengiriman:</span>
+                    <span className="font-bold text-cyan-400">Segar Hidup / Bersih Fillet</span>
                   </div>
                 </div>
               </div>
               <a
                 href="#kontak"
-                className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl text-center block transition-colors"
+                className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs rounded-xl text-center block transition-all shadow-lg shadow-cyan-900/40"
               >
                 Pesan Ikan Lele
               </a>
-            </div>
+            </Card3D>
 
             {/* Produk 2 */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-6">
+            <Card3D className="bg-slate-950 border border-slate-800 p-7 flex flex-col justify-between space-y-6" glowColor="rgba(20, 184, 166, 0.3)">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-2xl bg-teal-950 text-teal-400 flex items-center justify-center font-bold border border-teal-800">
                   <Waves className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Ikan Nila Merah & Nila Hitam</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Ikan nila berkualitas tinggi dengan pertumbuhan cepat, daging tebal manis alami, dan sisik bersih dari kolam air mengalir beroksigen tinggi.
+                <h3 className="text-xl font-black text-white">Ikan Nila Merah & Nila Hitam</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Ikan nila berkualitas tinggi dengan pertumbuhan bobot cepat, sisik cerah berkilau, dan daging tebal manis dari sirkulasi air teroksigenasi tinggi.
                 </p>
-                <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                <div className="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4">
                   <div className="flex justify-between">
-                    <span>Ukuran Konsumsi:</span>
-                    <span className="font-bold text-slate-900">Isi 3 - 5 ekor / kg</span>
+                    <span className="text-slate-400">Ukuran Konsumsi:</span>
+                    <span className="font-bold text-white">Isi 3 - 5 ekor / kg</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Varietas:</span>
-                    <span className="font-bold text-slate-900">Nila Merah Bangkok & Nila Hitam</span>
+                    <span className="text-slate-400">Varietas Unggul:</span>
+                    <span className="font-bold text-white">Nila Merah Bangkok & Nila Hitam</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Target Pasar:</span>
-                    <span className="font-bold text-teal-600">Restoran, Katering, Pasar Segar</span>
+                    <span className="text-slate-400">Target Pasar:</span>
+                    <span className="font-bold text-teal-400">Restoran, Supermarket, Katering</span>
                   </div>
                 </div>
               </div>
               <a
                 href="#kontak"
-                className="w-full py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs rounded-xl text-center block transition-colors"
+                className="w-full py-3 bg-teal-600 hover:bg-teal-500 text-slate-950 font-black text-xs rounded-xl text-center block transition-all shadow-lg shadow-teal-900/40"
               >
                 Pesan Ikan Nila
               </a>
-            </div>
+            </Card3D>
 
             {/* Produk 3 */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between space-y-6">
+            <Card3D className="bg-slate-950 border border-slate-800 p-7 flex flex-col justify-between space-y-6" glowColor="rgba(245, 158, 11, 0.3)">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                <div className="w-12 h-12 rounded-2xl bg-amber-950 text-amber-400 flex items-center justify-center font-bold border border-amber-800">
                   <Sparkles className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Bibit & Benih Ikan Unggul</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Benih lele (Sangkuriang/Mutiara) dan benih nila pilihan. Lincah, tahan penyakit, seragam, dan siap tebar dengan tingkat adaptasi prima.
+                <h3 className="text-xl font-black text-white">Bibit & Benih Ikan Unggul</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Bibit lele (Sangkuriang/Mutiara) dan bibit nila pilihan. Lincah, tahan fluktuasi cuaca, seragam, dan siap tebar dengan tingkat adaptasi prima.
                 </p>
-                <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                <div className="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4">
                   <div className="flex justify-between">
-                    <span>Ukuran Bibit:</span>
-                    <span className="font-bold text-slate-900">5-7 cm &bull; 7-9 cm &bull; 9-11 cm</span>
+                    <span className="text-slate-400">Ukuran Benih:</span>
+                    <span className="font-bold text-white">5-7 cm &bull; 7-9 cm &bull; 9-11 cm</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Grading Kualitas:</span>
-                    <span className="font-bold text-slate-900">Sortir Ketat Grade A</span>
+                    <span className="text-slate-400">Grading Standar:</span>
+                    <span className="font-bold text-white">Sortir Ketat Grade A</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Pengemasan:</span>
-                    <span className="font-bold text-amber-600">Kantong Oksigen Bergaransi</span>
+                    <span className="text-slate-400">Pengemasan:</span>
+                    <span className="font-bold text-amber-400">Box Oksigen Siap Kirim</span>
                   </div>
                 </div>
               </div>
               <a
                 href="#kontak"
-                className="w-full py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl text-center block transition-colors"
+                className="w-full py-3 bg-amber-600 hover:bg-amber-500 text-slate-950 font-black text-xs rounded-xl text-center block transition-all shadow-lg shadow-amber-900/40"
               >
                 Pesan Bibit Ikan
               </a>
-            </div>
+            </Card3D>
           </div>
         </div>
       </section>
 
-      {/* 5. TEKNOLOGI BUDIDAYA */}
-      <section id="keunggulan" className="py-20 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-teal-400 bg-teal-950 px-3 py-1 rounded-full border border-teal-800">
-                Sains & Teknologi Budidaya Air Tawar
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-                Mengapa Memilih Ikan Air Tawar dari Papap Fish Farm?
-              </h2>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Kami menerapkan sistem budidaya ramah lingkungan dengan sirkulasi aerasi oksigen terlarut tinggi, pemanfaatan mikroba probiotik pengurai limbah, serta pemantauan kualitas air harian.
+      {/* 6. FASILITAS KOLAM PETERNAKAN */}
+      <section id="fasilitas" className="py-20 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="max-w-2xl mx-auto text-center space-y-3">
+            <span className="text-xs font-black uppercase tracking-wider text-teal-400 bg-teal-950 px-4 py-1.5 rounded-full border border-teal-800">
+              Infrastruktur Modern
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Fasilitas Budidaya Papap Fish Farm
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Dibangun dengan standar akuakultur teruji untuk menjamin stabilitas ekosistem kolam.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold">
+                <Layers className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-white text-base">Kolam Bioflok D3 - D5</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Rangka besi galvanis dengan terpal karet Orchid tahan cuaca dan central drainase sentral pembuangan endapan.
               </p>
-
-              <div className="space-y-4 pt-2">
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 p-1 bg-teal-500/20 text-teal-400 rounded-lg">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm text-white">Efisiensi Pakan Maksimal (FCR Rendah)</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Rasio konversi pakan terkontrol optimal (FCR 1.0 - 1.1), menghasilkan pertumbuhan bobot ikan secara efektif dan hemat pakan.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 p-1 bg-teal-500/20 text-teal-400 rounded-lg">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm text-white">Hemat Air & Ramah Lingkungan</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Pengolahan air sirkulasi menjaga parameter lingkungan kolam tetap higienis tanpa menimbulkan polusi atau aroma tidak sedap.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 p-1 bg-teal-500/20 text-teal-400 rounded-lg">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm text-white">Daging Bersih, Higienis & Manis Alami</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Bebas dari rasa atau bau tanah/lumpur karena ikan dipelihara di kolam terpal bersih berdrainase tengah teratur.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* Visual Diagram */}
-            <div className="bg-slate-800 p-8 rounded-3xl border border-slate-700 space-y-6">
-              <h3 className="font-bold text-base text-white border-b border-slate-700 pb-3 flex items-center justify-between">
-                <span>Perbandingan Kolam Modern vs Kolam Tanah Tradisional</span>
-                <span className="text-xs text-teal-400 font-semibold">Papap Fish Farm</span>
-              </h3>
-
-              <div className="space-y-4 text-xs">
-                <div>
-                  <div className="flex justify-between mb-1 text-slate-300">
-                    <span>Efisiensi Pakan (FCR)</span>
-                    <span className="text-teal-400 font-bold">Papap Farm: 1.03 | Tradisional: 1.45</span>
-                  </div>
-                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-teal-400 rounded-full w-[85%]" />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-1 text-slate-300">
-                    <span>Tingkat Kelangsungan Hidup (SR)</span>
-                    <span className="text-emerald-400 font-bold">Papap Farm: 95% | Tradisional: 75%</span>
-                  </div>
-                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-emerald-400 rounded-full w-[95%]" />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-1 text-slate-300">
-                    <span>Kebersihan & Kualitas Daging</span>
-                    <span className="text-cyan-400 font-bold">100% Bebas Bau Lumpur</span>
-                  </div>
-                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-cyan-400 rounded-full w-[100%]" />
-                  </div>
-                </div>
+            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-teal-950 text-teal-400 flex items-center justify-center font-bold">
+                <Activity className="w-5 h-5" />
               </div>
+              <h4 className="font-bold text-white text-base">Roots Blower Aerasi</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Suplai oksigen mikro tanpa henti 24/7 menggunakan jaringan uniring diffuser di dasar kolam.
+              </p>
+            </div>
 
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-700 text-slate-400 text-xs">
-                💡 <strong className="text-white">Didukung Sistem Manajemen Digital:</strong> Seluruh kolam kami
-                tercatat secara harian di sistem manajemen budidaya untuk akurasi data pakan, biomassa, dan panen.
+            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 flex items-center justify-center font-bold">
+                <ShieldCheck className="w-5 h-5" />
               </div>
+              <h4 className="font-bold text-white text-base">Laboratorium Kualitas Air</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Uji harian parameter Dissolved Oxygen (DO), pH digital, TDS, dan kepadatan flok bakteri secara saintifik.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-950 text-amber-400 flex items-center justify-center font-bold">
+                <Building2 className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-white text-base">Karantina & Grading</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Fasilitas aklimatisasi benih baru dan penyortiran ukuran berkala sebelum didistribusikan ke pelanggan.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. FORMULIR KONTAK & LOKASI */}
-      <section id="kontak" className="py-20 bg-white">
+      {/* 7. FORMULIR KONTAK & KEMITRAAN */}
+      <section id="kontak" className="py-20 bg-slate-900/90 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Info Kontak */}
             <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+              <span className="text-xs font-black uppercase tracking-wider text-cyan-400 bg-cyan-950 px-4 py-1.5 rounded-full border border-cyan-800">
                 Hubungi Kami
               </span>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
+              <h2 className="text-3xl font-black text-white tracking-tight">
                 Konsultasikan Kebutuhan Ikan & Kemitraan Pasokan
               </h2>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Kami siap melayani kebutuhan pasokan ikan konsumsi segar, benih ikan air tawar, serta kerjasama usaha jangka panjang. Silakan hubungi <strong>Haji Anung Suryanto</strong> dan tim Papap Fish Farm.
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Kami siap menjadi rekan pasokan ikan air tawar terpercaya. Silakan hubungi <strong>Haji Anung Suryanto</strong> dan staf pemasaran Papap Fish Farm.
               </p>
 
               <div className="space-y-4 pt-4 text-xs sm:text-sm">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center flex-shrink-0 border border-cyan-800">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="font-bold text-slate-800">Lokasi Peternakan Farm:</p>
-                    <p className="text-slate-500 text-xs">
+                    <p className="font-bold text-white">Lokasi Peternakan:</p>
+                    <p className="text-slate-400 text-xs">
                       Sentra Budidaya Ikan Air Tawar Papap Fish Farm, Indonesia
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-teal-950 text-teal-400 flex items-center justify-center flex-shrink-0 border border-teal-800">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="font-bold text-slate-800">Telepon & WhatsApp Pemesanan:</p>
-                    <p className="text-slate-500 text-xs">+62 812-3456-7890 / H. Anung Suryanto</p>
+                    <p className="font-bold text-white">Telepon & WhatsApp:</p>
+                    <p className="text-slate-400 text-xs">+62 812-3456-7890 / Haji Anung Suryanto</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-blue-950 text-blue-400 flex items-center justify-center flex-shrink-0 border border-blue-800">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="font-bold text-slate-800">Email Resmi:</p>
-                    <p className="text-slate-500 text-xs">kontak@papapfishfarm.com</p>
+                    <p className="font-bold text-white">Email Resmi:</p>
+                    <p className="text-slate-400 text-xs">kontak@papapfishfarm.com</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-amber-950 text-amber-400 flex items-center justify-center flex-shrink-0 border border-amber-800">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="font-bold text-slate-800">Jam Operasional & Kunjungan Farm:</p>
-                    <p className="text-slate-500 text-xs">Senin - Sabtu: 07.00 - 17.00 WIB</p>
+                    <p className="font-bold text-white">Jam Operasional & Kunjungan:</p>
+                    <p className="text-slate-400 text-xs">Senin - Sabtu: 07.00 - 17.00 WIB</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Formulir */}
+            {/* Formulir 3D */}
             <div className="lg:col-span-7">
-              <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm">
-                <h3 className="text-xl font-bold text-slate-900 mb-1">Kirim Pesan / Permintaan Pasokan</h3>
-                <p className="text-xs text-slate-500 mb-6">
-                  Isi formulir berikut dan tim Papap Fish Farm akan menghubungi Anda via WhatsApp dalam 1x24 jam.
+              <Card3D className="bg-slate-950 rounded-3xl p-8 border border-slate-800 shadow-2xl" glowColor="rgba(6, 182, 212, 0.25)">
+                <h3 className="text-xl font-black text-white mb-1">Kirim Pesan / Permintaan Pasokan</h3>
+                <p className="text-xs text-slate-400 mb-6">
+                  Isi formulir berikut dan tim kami akan menghubungi via WhatsApp dalam 1x24 jam.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      <label className="block text-xs font-semibold text-slate-300 mb-1">
                         Nama Lengkap / Nama Usaha *
                       </label>
                       <input
@@ -631,13 +653,13 @@ export default function CompanyProfilePage() {
                         required
                         value={contactForm.name}
                         onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                        placeholder="Contoh: RM Sari Laut / Budi"
+                        className="w-full px-3.5 py-2.5 text-sm bg-slate-900 border border-slate-800 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        placeholder="Contoh: RM Sari Rasa / Budi"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      <label className="block text-xs font-semibold text-slate-300 mb-1">
                         Nomor WhatsApp / Telepon *
                       </label>
                       <input
@@ -645,22 +667,22 @@ export default function CompanyProfilePage() {
                         required
                         value={contactForm.phone}
                         onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full px-3.5 py-2.5 text-sm bg-slate-900 border border-slate-800 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         placeholder="0812xxxxxxx"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Komoditas / Kebutuhan *
                     </label>
                     <select
                       value={contactForm.interest}
                       onChange={(e) => setContactForm({ ...contactForm, interest: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
+                      className="w-full px-3.5 py-2.5 text-sm bg-slate-900 border border-slate-800 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 cursor-pointer"
                     >
-                      <option value="Ikan Konsumsi Segar (Lele / Nila)">Ikan Lele Konsumsi Segar (Restoran / Warung)</option>
+                      <option value="Ikan Konsumsi Segar (Lele / Nila)">Ikan Lele Konsumsi Segar (Warung / Restoran)</option>
                       <option value="Ikan Nila Segar">Ikan Nila Konsumsi Segar (Merah / Hitam)</option>
                       <option value="Bibit Ikan Air Tawar">Bibit / Benih Ikan Air Tawar Unggul</option>
                       <option value="Kemitraan Suplai Rutin">Kemitraan Pasokan Grosir / Pasar Induk</option>
@@ -669,56 +691,60 @@ export default function CompanyProfilePage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    <label className="block text-xs font-semibold text-slate-300 mb-1">
                       Pesan / Keterangan Kebutuhan
                     </label>
                     <textarea
                       rows={4}
                       value={contactForm.message}
                       onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                      placeholder="Tuliskan estimasi jumlah kebutuhan (misal: 100 kg/minggu lele/nila) dan lokasi kirim..."
+                      className="w-full px-3.5 py-2.5 text-sm bg-slate-900 border border-slate-800 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      placeholder="Tuliskan estimasi jumlah kebutuhan (misal: 100 kg/minggu) dan lokasi pengiriman..."
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={submitted}
-                    className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md shadow-emerald-700/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 font-black text-sm rounded-xl shadow-lg shadow-cyan-900/40 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                     <span>{submitted ? 'Mengirimkan...' : 'Kirim Pesan Sekarang'}</span>
                   </button>
                 </form>
-              </div>
+              </Card3D>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. FOOTER */}
+      {/* 8. FOOTER DENGAN LOGO RESMI */}
       <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center">
-                <Fish className="w-6 h-6" />
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-white p-1.5 flex items-center justify-center shadow-lg border border-slate-800 flex-shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="Papap Fish Farm Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
-                <h4 className="font-bold text-white text-base">Papap Fish Farm</h4>
-                <p className="text-xs text-slate-400">Pusat Budidaya Ikan Air Tawar & Pasokan Segar Berkualitas &bull; Pemilik: H. Anung Suryanto</p>
+                <h4 className="font-black text-white text-base">Papap Fish Farm</h4>
+                <p className="text-xs text-slate-400">Pusat Budidaya Ikan Air Tawar Bioflok & Pasokan Segar &bull; Pemilik: H. Anung Suryanto</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-xs font-semibold">
-              <Link href="/" className="text-emerald-400 hover:text-emerald-300 transition-colors">
+            <div className="flex items-center gap-5 text-xs font-bold">
+              <Link href="/" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                 Dashboard Budidaya
               </Link>
               <Link href="/login" className="text-slate-300 hover:text-white transition-colors">
                 Portal Pengelola
               </Link>
               <a href="#kontak" className="text-slate-300 hover:text-white transition-colors">
-                Kontak Pemasaran
+                Kontak WhatsApp
               </a>
             </div>
           </div>

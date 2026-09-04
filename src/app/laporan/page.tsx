@@ -230,16 +230,19 @@ export default function ReportsPage() {
       {/* KOP SURAT KHUSUS CETAK & PDF */}
       <div className="hidden print:block border-b-2 border-slate-900 pb-4 mb-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-black uppercase tracking-wider text-slate-900">
-              {user?.farmName || 'Papap Fish Farm'}
-            </h1>
-            <p className="text-xs text-slate-600">
-              Sistem Manajemen Usaha Budidaya Ikan Air Tawar Modern &bull; Telepon: +62 812-3456-7890
-            </p>
-            <p className="text-xs text-slate-600">
-              Dokumen: {reportType === 'keuangan' ? 'Laporan Keuangan & Kas' : reportType === 'budidaya' ? 'Laporan Populasi Budidaya' : 'Laporan Hasil Panen Raya'}
-            </p>
+          <div className="flex items-center gap-4">
+            <img src="/logo.png" alt="Logo" className="w-16 h-16 object-contain" />
+            <div>
+              <h1 className="text-2xl font-black uppercase tracking-wider text-slate-900">
+                {user?.farmName || 'Papap Fish Farm'}
+              </h1>
+              <p className="text-xs text-slate-600">
+                Sistem Manajemen Usaha Budidaya Ikan Air Tawar Modern &bull; Telepon: +62 812-3456-7890
+              </p>
+              <p className="text-xs text-slate-600">
+                Dokumen: {reportType === 'keuangan' ? 'Laporan Keuangan & Kas' : reportType === 'budidaya' ? 'Laporan Populasi Budidaya' : 'Laporan Hasil Panen Raya'}
+              </p>
+            </div>
           </div>
           <div className="text-right text-xs text-slate-600">
             <p>Tanggal Cetak: {formatDate(new Date())}</p>

@@ -62,8 +62,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Brand Header */}
         <div className="h-18 px-6 py-5 flex items-center justify-between border-b border-slate-800/80 bg-slate-950/40">
           <Link href="/" className="flex items-center gap-3 group" onClick={onClose}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-lg shadow-emerald-950/50">
-              <Fish className="w-6 h-6 transform group-hover:scale-110 transition-transform" />
+            <div className="w-11 h-11 rounded-xl bg-white p-1 flex items-center justify-center shadow-lg shadow-emerald-950/50 flex-shrink-0">
+              <img src="/logo.png" alt="Papap Fish Farm" className="w-full h-full object-contain transform group-hover:scale-105 transition-transform" />
             </div>
             <div>
               <h1 className="font-bold text-base text-white tracking-tight leading-none flex items-center gap-1.5">

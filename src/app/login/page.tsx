@@ -52,8 +52,8 @@ export default function LoginPage() {
         {/* Brand Icon */}
         <div className="text-center space-y-2">
           <Link href="/profil-perusahaan" className="inline-block group">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white mx-auto shadow-lg shadow-emerald-900/30 group-hover:scale-105 transition-transform">
-              <Fish className="w-8 h-8" />
+            <div className="w-20 h-20 rounded-3xl bg-white p-2 flex items-center justify-center mx-auto shadow-xl shadow-slate-200 border border-slate-100 group-hover:scale-105 transition-transform">
+              <img src="/logo.png" alt="Papap Fish Farm" className="w-full h-full object-contain" />
             </div>
           </Link>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight">Papap Fish Farm</h1>
