@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://papapfishfarm.vercel.app/profil-perusahaan/sitemap.xml
