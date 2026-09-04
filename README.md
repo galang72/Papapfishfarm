@@ -81,7 +81,7 @@ Aplikasi Web Responsif Modern Sistem Manajemen & Pencatatan Budidaya Ikan Lele, 
 
 1. **Masuk ke folder project**:
    ```bash
-   cd C:\Users\ajawe\.gemini\antigravity\scratch\lelefarm-management
+   cd C:\Users\ajawe\Papapfishfarm-management
    ```
 
 2. **Jalankan aplikasi (Development)**:
@@ -104,5 +104,5 @@ Aplikasi Web Responsif Modern Sistem Manajemen & Pencatatan Budidaya Ikan Lele, 
 
 - **Email**: `admin@lelefarm.id`
 - **Kata Sandi**: `password123`
-- **Nama Pengelola**: Haji Supardi
-- **Nama Usaha**: LeleFarm Sukses Makmur
+- **Nama Pengelola**: Haji Anung Suryanto
+- **Nama Usaha**: Papapfishfarm
